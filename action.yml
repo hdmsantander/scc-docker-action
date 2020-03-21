@@ -1,0 +1,15 @@
+# action.yml
+name: "scc-docker-action"
+description: "Counts the lines of code and performs complexity analysis"
+inputs:
+  args:
+    description: "CLI args"
+    required: false
+outputs:
+  scc:
+    description: "Lines of code"
+runs:
+  using: "docker"
+  image: "Dockerfile"
+  args:
+    - ${{ inputs.args }}
