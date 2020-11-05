@@ -6,7 +6,7 @@ WORKDIR /app
 # Install wget + bash
 RUN apk update
 RUN apk add wget
-RUN apk add --no-cache --upgrade bash
+RUN apk add --no-cache --upgrade bash sudo
 
 # Download scc
 RUN wget https://github.com/boyter/scc/releases/download/v2.13.0/scc-2.13.0-i386-unknown-linux.zip
