@@ -3,7 +3,7 @@ FROM alpine:3.11.3
 
 WORKDIR /app
 
-RUN groupadd -g 1000 scc && useradd -u 1000 -g scc -s /bin/sh scc
+RUN addgroup -g 1000 scc && adduser --uid 1000 --shell /bin/sh scc scc
 
 # Install wget + bash
 RUN apk update
