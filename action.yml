@@ -1,5 +1,5 @@
 # action.yml
-name: "scc-docker-action"
+name: "scc-docker-modified"
 description: "Counts the lines of code and performs complexity analysis"
 inputs:
   args:
