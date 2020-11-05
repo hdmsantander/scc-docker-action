@@ -3,7 +3,7 @@ FROM alpine:3.11.3
 
 WORKDIR /app
 
-RUN addgroup scc && adduser --shell /bin/sh scc scc
+RUN adduser --shell /bin/sh scc scc
 
 # Install wget + bash
 RUN apk update
