@@ -1,19 +1,30 @@
 # Use Alpine image
-FROM alpine:3.11.3
+FROM alpine:3.12.1
 
-WORKDIR /app
+# Set user name
+ENV USER sccuser
+ENV HOME /home/sccuser
 
-# Install wget + bash
-RUN apk update
-RUN apk add wget
-RUN apk add --no-cache --upgrade bash sudo
+# Install wget, sudo
+RUN apk add --update sudo wget bash
+
+# Add new user
+RUN adduser -D $USER \
+        && echo "$USER ALL=(ALL) NOPASSWD: ALL" > /etc/sudoers.d/$USER \
+        && chmod 0440 /etc/sudoers.d/$USER
+
+# Change to user
+USER $USER
+
+# Set application workdir to user home dir
+WORKDIR $HOME
 
 # Download scc
 RUN wget https://github.com/boyter/scc/releases/download/v2.13.0/scc-2.13.0-i386-unknown-linux.zip
-RUN unzip ./scc-2.13.0-i386-unknown-linux.zip -d /app
+RUN unzip ./scc-2.13.0-i386-unknown-linux.zip -d $HOME
 
 # Copy shell script
-COPY entrypoint.sh /entrypoint.sh
+COPY entrypoint.sh $HOME/entrypoint.sh
 
 # Run script
-ENTRYPOINT ["/entrypoint.sh"]
+ENTRYPOINT ["/home/sccuser/entrypoint.sh"]
