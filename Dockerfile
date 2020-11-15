@@ -11,7 +11,7 @@ RUN apk add --update sudo wget bash
 # Add new user
 RUN adduser -D $USER \
         && echo "$USER ALL=(ALL) NOPASSWD: ALL" > /etc/sudoers.d/$USER \
-        && chmod 0440 /etc/sudoers.d/$USER
+        && chmod 0440 /etc/sudoers.d/$USER 
 
 # Change to user
 USER $USER
@@ -22,6 +22,7 @@ WORKDIR $HOME
 # Download scc
 RUN wget https://github.com/boyter/scc/releases/download/v2.13.0/scc-2.13.0-i386-unknown-linux.zip
 RUN unzip ./scc-2.13.0-i386-unknown-linux.zip -d $HOME
+RUN chmod +x $HOME/scc
 
 # Copy shell script
 COPY entrypoint.sh $HOME/entrypoint.sh
