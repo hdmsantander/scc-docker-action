@@ -2,7 +2,7 @@
 scc $@
 whoami
 pwd
-chmod 644 /home/sccuser/*.json
+chmod 644 *.json
 ls -la .
 ls -la ..
 ls -la ../..
