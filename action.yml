@@ -1,15 +1,15 @@
 # action.yml
 name: "Complexity analysis using SCC"
-description: "Counts the lines of code and performs complexity analysis using Boyter's SCC"
+description: "Counts the lines of code and performs complexity analysis using Boyter's SCC tool"
 inputs:
   args:
     description: "SCC CLI args"
     required: false
-outputs:
-  scc:
-    description: "SCC Output"
 runs:
   using: "docker"
   image: "Dockerfile"
   args:
     - ${{ inputs.args }}
+branding:
+  icon: "code"
+  color: "black"
