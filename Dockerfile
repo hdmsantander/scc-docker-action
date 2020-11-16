@@ -3,14 +3,17 @@ FROM alpine:3.12.1
 
 # Set user name
 ENV USER sccuser
+ENV UID 1001
 ENV HOME /home/sccuser
 ENV PATH "$PATH:$HOME"
 
 # Install wget, sudo
-RUN apk add --update wget bash
+RUN apk add --update sudo wget bash
 
 # Add new user
-RUN adduser -D $USER
+RUN adduser -D $USER -u $UID \
+        && echo "$USER ALL=(ALL) NOPASSWD: ALL" > /etc/sudoers.d/$USER \
+        && chmod 0440 /etc/sudoers.d/$USER 
 
 # Change to user
 USER $USER
