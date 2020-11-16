@@ -5,6 +5,9 @@ inputs:
   args:
     description: "SCC CLI args"
     required: false
+outputs:
+  scc:
+    description: "SCC analysis"
 runs:
   using: "docker"
   image: "Dockerfile"
