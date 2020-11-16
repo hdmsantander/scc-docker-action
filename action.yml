@@ -1,13 +1,13 @@
 # action.yml
-name: "scc-docker-modified"
-description: "Counts the lines of code and performs complexity analysis"
+name: "Complexity analysis using SCC"
+description: "Counts the lines of code and performs complexity analysis using Boyter's SCC"
 inputs:
   args:
-    description: "CLI args"
+    description: "SCC CLI args"
     required: false
 outputs:
   scc:
-    description: "Lines of code"
+    description: "SCC Output"
 runs:
   using: "docker"
   image: "Dockerfile"

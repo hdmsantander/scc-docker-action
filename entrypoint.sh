@@ -1,9 +1,4 @@
 #!/bin/bash
-scc $@
-whoami
-pwd
-chmod 644 *.json
-ls -la .
-ls -la ..
-ls -la ../..
-ls -la ../../..
+OUT=$(scc $@ -f json)
+echo "::set-output name=scc::$OUT"
+#chmod 644 *.json
