@@ -6,11 +6,13 @@ This action counts the lines of code and performs complexity analysis using scc.
 
 ### `args`
 
+**Required** The CLI args corresponding to the SCC tool
+
 ## Outputs
 
-### `scc`
+### `scc.json`
 
-The lines of ccode.
+The result of the scc analysis in JSON format as a file in the root folder of the runner. This file can be uploaded as an artifact in the same workflow or can be used as is in the same job context.
 
 ## Example usage
 
@@ -22,13 +24,14 @@ on: [push]
 jobs:
   scc_job:
     runs-on: ubuntu-latest
-    name: A job to count the lines of code.
+    name: SCC analysis
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-      - name: Get the lines of code.
+        
+      - name: Execute scc.
         id: scc
-        uses: hdmsantander/scc-docker-action@v1.0.0
+        uses: hdmsantander/scc-docker-action@3.0
         with:
-          args: ${{ env.workspace }} -i js,go,html,css
+          args: ${{ env.workspace }} src --ci -i java -f json -o scc.json
 ```
