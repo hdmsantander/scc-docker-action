@@ -22,8 +22,8 @@ USER $USER
 WORKDIR $HOME
 
 # Download scc
-RUN wget https://github.com/boyter/scc/releases/download/v2.13.0/scc-2.13.0-i386-unknown-linux.zip
-RUN unzip ./scc-2.13.0-i386-unknown-linux.zip -d $HOME
+RUN wget -q https://github.com/boyter/scc/releases/download/v2.13.0/scc-2.13.0-i386-unknown-linux.zip
+RUN unzip -q ./scc-2.13.0-i386-unknown-linux.zip -d $HOME
 RUN chmod +x $HOME/scc
 
 # Copy shell script

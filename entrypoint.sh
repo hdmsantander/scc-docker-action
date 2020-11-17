@@ -1,3 +1,8 @@
 #!/bin/bash
 scc $@
-chmod 644 *.json
+
+OUTPUT=./*.json
+
+if [ -f "$OUTPUT" ]; then
+	chmod 644 *.json
+fi
